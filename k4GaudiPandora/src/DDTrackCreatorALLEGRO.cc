@@ -262,10 +262,11 @@ bool DDTrackCreatorALLEGRO::PassesQualityCuts(const edm4hep::Track& pTrack, cons
         const float pY(fabs(momentumAtDca.GetY()));
         const float pZ(fabs(momentumAtDca.GetZ()));
         const float pT(std::sqrt(pX * pX + pY * pY));
-        // AD: getRadiusOfInnermostHit() is not available for edm4hep::Track. No hits are attached to the track so we cannot calculate it manually.
-        // Setting it to zero.
-        //const float rInnermostHit(pTrack.getRadiusOfInnermostHit());
-        const float rInnermostHit = 0;
+        // AD: getRadiusOfInnermostHit() is not available for edm4hep::Track.
+        // No hits are attached to the track so we cannot calculate it directly.
+        // We can caluclate it from the trackState AtFirstHit
+        const edm4hep::Vector3f posAtFirstHit(firstTrackState.referencePoint);
+        const float rInnermostHit = std::sqrt(posAtFirstHit.x*posAtFirstHit.x + posAtFirstHit.y*posAtFirstHit.y);
 
         // reject track with zero pT or pZ (why for pZ?) or innermost hit beyond DCH
         if ((std::numeric_limits<float>::epsilon() > std::fabs(pT)) || (std::numeric_limits<float>::epsilon() > std::fabs(pZ)) || (rInnermostHit >= m_dchOuterR))
