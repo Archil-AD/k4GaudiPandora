@@ -143,8 +143,8 @@ void DDCaloHitCreatorALLEGRO::getEndCapCaloHitProperties(
     double r = std::sqrt(position.x * position.x + position.y * position.y + position.z * position.z);
     double theta = std::acos(position.z / r);
     caloHitParameters.m_cellSize0 = this->convertDeltaThetaToDeltaEta(deltaTheta, theta);
-    // NOTE: need to multiply the cellSize1 by sin(theta) because of known issue in the PandoraSDK implementation of POINTING cells:
-    // https://github.com/PandoraPFA/PandoraSDK/issues/22
+    // NOTE: need to multiply the cellSize1 by sin(theta) because of known issue in the PandoraSDK implementation of
+    // POINTING cells: https://github.com/PandoraPFA/PandoraSDK/issues/22
     caloHitParameters.m_cellSize1 = layers[physicalLayer].cellSize1 * std::sin(theta);
   }
 
@@ -211,8 +211,8 @@ void DDCaloHitCreatorALLEGRO::getBarrelCaloHitProperties(
     double r = std::sqrt(position.x * position.x + position.y * position.y + position.z * position.z);
     double theta = std::acos(position.z / r);
     caloHitParameters.m_cellSize0 = this->convertDeltaThetaToDeltaEta(deltaTheta, theta);
-    // NOTE: need to multiply the cellSize1 by sin(theta) because of known issue in the PandoraSDK implementation of POINTING cells:
-    // https://github.com/PandoraPFA/PandoraSDK/issues/22
+    // NOTE: need to multiply the cellSize1 by sin(theta) because of known issue in the PandoraSDK implementation of
+    // POINTING cells: https://github.com/PandoraPFA/PandoraSDK/issues/22
     caloHitParameters.m_cellSize1 = layers[physicalLayer].cellSize1 * std::sin(theta);
   }
 

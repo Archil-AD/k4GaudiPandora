@@ -101,7 +101,8 @@ private:
 
   /**
    *  @brief  Convert delta theta to delta eta. This conversion is needed because PandoraSDK
-   *  provides POINTING cell geometry assuming a DeltaEta segmentation, while in ALLEGRO we have the DeltaTheta segmentation.
+   *  provides POINTING cell geometry assuming a DeltaEta segmentation, while in ALLEGRO we have the DeltaTheta
+   * segmentation.
    *
    *  @param  deltaTheta the delta theta in radians
    *  @param  position the hit position to calculate the theta angle
